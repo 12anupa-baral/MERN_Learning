@@ -4,6 +4,7 @@ const express =require('express')
 const connectToDatabase = require('./Database/index')
 
 const app = express()
+app.use(express.json())
 connectToDatabase();
 app.get("/",(req ,res)=>{
     console.log(req)
@@ -11,10 +12,10 @@ app.get("/",(req ,res)=>{
 }
 )
 
-app.get("/about",(req ,res)=>{
-    console.log(req)
-    res.json({
-     hello:   "Hello About"
+app.post("/blog",(req ,res)=>{
+    console.log(req.body)
+    res.status(200).json({
+        message:"blog api hit successfully"
     })
 }
 )
